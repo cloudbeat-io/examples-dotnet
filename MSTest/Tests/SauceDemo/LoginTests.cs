@@ -8,8 +8,9 @@ namespace CbExamples.NUnit.Tests.SauceDemo
     [TestClass]
     public class LoginTests : WebDriverTest
     {
-        [CbTestMethod("Standard user login behaviour")]
-        public void StandardUserTest()
+		//[TestMethod("Standard user login behaviour")]
+		[TestMethod]
+		public void StandardUserTest()
 		{
             var loginPage = new LoginPage(Driver);
             loginPage.Open();
@@ -19,14 +20,16 @@ namespace CbExamples.NUnit.Tests.SauceDemo
             loginPage.PressLoginButton();
         }
 
-        [CbTestMethod("Locked out user login behaviour")]
+        //[TestMethod("Locked out user login behaviour")]
+        [TestMethod]
         public void LockedOutUserTest()
         {
 
         }
 
-        [CbTestMethod("Problem user login behaviour")]
-        public void ProblemUserTest()
+		//[TestMethod("Problem user login behaviour")]
+		[TestMethod]
+		public void ProblemUserTest()
         {
 
         }
