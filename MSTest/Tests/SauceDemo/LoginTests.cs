@@ -1,13 +1,14 @@
 ﻿using System;
 using CbExamples.NUnit.Infra;
 using CbExamples.NUnit.Pages.SauceDemo;
+using CloudBeat.Kit.MSTest.Attributes;
 
 namespace CbExamples.NUnit.Tests.SauceDemo
 {
     [TestClass]
     public class LoginTests : WebDriverTest
     {
-        [TestMethod("Standard user login behaviour")]
+        [CbTestMethod("Standard user login behaviour")]
         public void StandardUserTest()
 		{
             var loginPage = new LoginPage(Driver);
@@ -18,13 +19,13 @@ namespace CbExamples.NUnit.Tests.SauceDemo
             loginPage.PressLoginButton();
         }
 
-        [TestMethod("Locked out user login behaviour")]
+        [CbTestMethod("Locked out user login behaviour")]
         public void LockedOutUserTest()
         {
 
         }
 
-        [TestMethod("Problem user login behaviour")]
+        [CbTestMethod("Problem user login behaviour")]
         public void ProblemUserTest()
         {
 
