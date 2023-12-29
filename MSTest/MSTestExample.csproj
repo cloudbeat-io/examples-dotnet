@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -34,5 +34,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.Common\CloudBeat.Kit.Common.csproj" />
     <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.MSTest\CloudBeat.Kit.MSTest.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
