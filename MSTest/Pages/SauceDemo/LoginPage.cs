@@ -1,9 +1,9 @@
 ﻿using System;
-using CbExamples.NUnit.Infra;
+using CbExamples.MSTest.Infra;
 using CloudBeat.Kit.MSTest.Attributes;
 using OpenQA.Selenium;
 
-namespace CbExamples.NUnit.Pages.SauceDemo
+namespace CbExamples.MSTest.Pages.SauceDemo
 {
 	public class LoginPage : PageObjectBase
 	{
@@ -12,11 +12,13 @@ namespace CbExamples.NUnit.Pages.SauceDemo
 
 		#region Page Elements
 
-		private IWebElement LoginBtn => WebElementFinder.GetElement(driver, By.Id("login-button"));
+		private IWebElement LoginBtn => WebElementFinder.GetElement(driver, By.Id("login-button"), 5);
 
         private IWebElement UsernameField => WebElementFinder.GetElement(driver, By.Id("user-name"));
 
         private IWebElement PasswordField => WebElementFinder.GetElement(driver, By.Id("password"));
+
+        private IWebElement errorMessage => WebElementFinder.GetElement(driver, By.XPath("//h3[@data-test='error']"));
 
         #endregion
 
@@ -66,6 +68,22 @@ namespace CbExamples.NUnit.Pages.SauceDemo
             if (loginBtn == null)
                 Assert.Fail("Login button not found");
 			loginBtn.Click();
+        }
+
+        [CbStep("Assert successful login")]
+        public void AssertLoginSuccess()
+        {
+			if (LoginBtn != null)
+				Assert.Fail("Login failed");
+        }
+
+		[CbStep("Assert login error with message: {expectedMessage}")]
+        public void AssertLoginErrorMessage(string expectedMessage)
+        {
+            if (errorMessage == null)
+                Assert.Fail("Error message element not found");
+            string actualMessage = errorMessage.Text;
+            Assert.AreEqual<string>(expectedMessage, actualMessage);
         }
     }
 }

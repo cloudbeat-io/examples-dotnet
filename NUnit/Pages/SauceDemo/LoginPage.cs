@@ -68,6 +68,18 @@ namespace CbExamples.NUnit.Pages.SauceDemo
                 Assert.Fail("Login button not found");
 			loginBtn.Click();
         }
+
+        [CbStep("Assert successful login")]
+        public void AssertLoginSuccess()
+        {
+            if (LoginBtn != null)
+                Assert.Fail("Login failed");
+        }
+
+        public void AssertLoginErrorMessage(string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

@@ -7,7 +7,7 @@ namespace CbExamples.NUnit.Infra
     {
 		protected readonly IWebDriver driver;
 
-        public PageObjectBase(IWebDriver? driver)
+        public PageObjectBase(IWebDriver driver)
 		{
 			this.driver = driver;
 		}

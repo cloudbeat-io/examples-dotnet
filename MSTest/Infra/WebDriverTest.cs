@@ -4,7 +4,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.Events;
 
-namespace CbExamples.NUnit.Infra
+namespace CbExamples.MSTest.Infra
 {
     [TestClass]
     public class WebDriverTest : CbTest

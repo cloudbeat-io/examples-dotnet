@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenQA.Selenium;
 
-namespace CbExamples.NUnit.Infra
+namespace CbExamples.MSTest.Infra
 {
 	public class PageObjectBase
     {

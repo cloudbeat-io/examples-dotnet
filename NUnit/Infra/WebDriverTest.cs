@@ -9,9 +9,9 @@ namespace CbExamples.NUnit.Infra
 {
     public class WebDriverTest : TestBase
     {
-        private IWebDriver? _driver = null;
+        private IWebDriver _driver = null;
 
-        public EventFiringWebDriver? Driver { get; private set; }
+        public EventFiringWebDriver Driver { get; private set; }
 
         [SetUp]
         public void SetUpWebDriver()
