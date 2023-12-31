@@ -7,7 +7,7 @@ using OpenQA.Selenium.Support.Events;
 namespace CbExamples.MSTest.Infra
 {
     [TestClass]
-    public class WebDriverTest : CbTest
+    public abstract class WebDriverTest : CbTest
     {
         private IWebDriver _driver = null;
 

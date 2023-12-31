@@ -1,9 +1,8 @@
 ﻿using System;
 using CbExamples.MSTest.Infra;
 using CbExamples.MSTest.Pages.SauceDemo;
-using CloudBeat.Kit.MSTest.Attributes;
 
-namespace CbExamples.NUnit.Tests.SauceDemo
+namespace CbExamples.MSTest.Tests.SauceDemo
 {
     [TestClass]
     public class LoginTests : WebDriverTest
