@@ -1,18 +1,21 @@
 ﻿using System;
+using CloudBeat.Kit.Common.Attributes;
+using CloudBeat.Kit.Common.Enums;
+using CbExamples.NUnit.Infra;
+using NUnit.Framework;
+using CbExamples.NUnit.Pages.SauceDemo;
 using CbExamples.MSTest.Pages.SauceDemo;
-using CbExamples.MSTest.Infra;
 
-namespace CbExamples.MSTest.Tests.SauceDemo
+namespace CbExamples.NUnit.Tests.SauceDemo
 {
-    [TestClass]
+    [CbTestMode(CbTestModeEnum.Web)]
     public class ShopTests : WebDriverTest
     {
-		[DataTestMethod]
         [Description("Test add/remove buttons")]
-		[DataRow("standard_user", "secret_sauce")]
-        [DataRow("problem_user", "secret_sauce")]
-        [TestCategory("ShoppingCart")]
-        [TestCategory("WithLogin")]
+        [TestCase("standard_user", "secret_sauce")]
+        [TestCase("problem_user", "secret_sauce")]
+        [Category("ShoppingCart")]
+        [Category("WithLogin")]
         public void ProductsAddToRemoveFromCart(string username, string password)
 		{
             var loginPage = new LoginPage(Driver);
