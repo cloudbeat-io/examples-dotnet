@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<RunConfiguration>
+		<EnvironmentVariables>
+		  <CB_AGENT>true</CB_AGENT>
+		</EnvironmentVariables>
+	</RunConfiguration>
+    <TestRunParameters>
+        
+		<!--<Parameter name="udid" value="B96EEB96-B25C-4901-89A0-8F083E62E450" />-->
+
+		<Parameter name="platformName" value="iOS" />
+        <Parameter name="deviceName" value="iPhone 14" />
+		 <Parameter name="browserName" value="iOS" />
+		  <Parameter name="version" value="16.2" />
+<!--
+		   <Parameter name="platform" value="MAC" />
+		<Parameter name="app" value="/Users/max/Downloads/LeumiCard_paymentTest.app" />
+		    <Parameter name="appiumUrl" value="http://10.10.50.116:4723/wd/hub" />-->
+		
+		<Parameter name="fullReset" value="false" />
+		<Parameter name="noReset" value="false" />
+
+		<Parameter name="appiumUrl" value="http://localhost:4723/wd/hub" />
+
+		<!--<Parameter name="appiumUrl" value="http://digdev18-pc:4723/wd/hub" />-->
+<!--
+		<Parameter name="deviceName" value="emulator-5560" />
+        <Parameter name="platformName" value="Android" />
+	-->	
+		
+
+        <Parameter name="technologyName" value="NUnit" />
+		
+		
+    </TestRunParameters>
+</RunSettings>

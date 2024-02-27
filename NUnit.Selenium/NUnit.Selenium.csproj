@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;</TargetFrameworks>
+    <ImplicitUsings>false</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>CbExamples.NUnit</RootNamespace>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+    <PackageReference Include="NUnit" Version="3.13.3" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />
+    <PackageReference Include="NUnit.Analyzers" Version="3.6.1"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+<PrivateAssets>all</PrivateAssets>
+</PackageReference>
+    <PackageReference Include="RestSharp" Version="109.0.1" />
+    <PackageReference Include="DnsClient" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Tests\" />
+    <None Remove="RestSharp" />
+    <None Remove="DnsClient" />
+    <None Remove="Infra\" />
+    <None Remove="Pages\" />
+    <None Remove="Pages\SauceDemo\" />
+    <None Remove="Tests\SauceDemo\" />
+    <None Remove="chromedriver\" />
+    <None Remove="chromedriver" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tests\" />
+    <Folder Include="Infra\" />
+    <Folder Include="Pages\" />
+    <Folder Include="Pages\SauceDemo\" />
+    <Folder Include="Tests\SauceDemo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.Common\CloudBeat.Kit.Common.csproj" />
+    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.NUnit\CloudBeat.Kit.NUnit.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chromedriver">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
