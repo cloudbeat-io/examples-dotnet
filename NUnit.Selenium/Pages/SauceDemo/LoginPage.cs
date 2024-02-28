@@ -75,10 +75,11 @@ namespace CbExamples.NUnit.Pages.SauceDemo
             if (LoginBtn != null)
                 Assert.Fail("Login failed");
         }
-
-        public void AssertLoginErrorMessage(string v)
+		[CbStep("Assert login error message: {message}")]
+		public void AssertLoginErrorMessage(string message)
         {
-            throw new NotImplementedException();
+            Assert.Fail("Login message is incorrect");
+            //throw new NotImplementedException();
         }
     }
 }

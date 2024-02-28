@@ -5,6 +5,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.Events;
+using OpenQA.Selenium.Support.Extensions;
 
 namespace CbExamples.NUnit.Infra
 {
@@ -45,6 +46,15 @@ namespace CbExamples.NUnit.Infra
         {
             if (_driver != null)
             {
+                if (TestContext.CurrentContext.Result.FailCount > 0)
+                {
+                    try
+                    {
+                        string screenshot = _driver.TakeScreenshot().AsBase64EncodedString;
+                        CbNUnit.AddScreenshot(screenshot);
+                    }
+                    catch { }
+                }
                 try
                 {
                     _driver.Close();
