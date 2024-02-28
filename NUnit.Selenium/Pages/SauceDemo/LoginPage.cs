@@ -29,8 +29,10 @@ namespace CbExamples.NUnit.Pages.SauceDemo
 		[CbStep("Open \"Login\" page")]
 		public void Open()
 		{
-			driver.Navigate().GoToUrl(baseUrl ?? DEFAULT_BASE_URL);
-		}
+            Log.Debug("Before navigation");
+            driver.Navigate().GoToUrl(baseUrl ?? DEFAULT_BASE_URL);
+            Log.Debug("After navigation");
+        }
 
         [CbStep("Assert \"Login\" page opened successfully")]
         public void AssertPageOpen()
@@ -74,10 +76,12 @@ namespace CbExamples.NUnit.Pages.SauceDemo
         {
             if (LoginBtn != null)
                 Assert.Fail("Login failed");
+            Log.Info("Logged in successfuly");
         }
 		[CbStep("Assert login error message: {message}")]
 		public void AssertLoginErrorMessage(string message)
         {
+            Log.Error("Assert failed");
             Assert.Fail("Login message is incorrect");
             //throw new NotImplementedException();
         }

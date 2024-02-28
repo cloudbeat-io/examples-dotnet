@@ -8,7 +8,9 @@ namespace CbExamples.NUnit.Infra
     [TestFixture]
     public class TestBase
 	{
-		public TestBase()
+        protected static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
+
+        public TestBase()
 		{
 		}
 	}
