@@ -22,7 +22,6 @@
     <PackageReference Include="RestSharp" Version="109.0.1" />
     <PackageReference Include="DnsClient" Version="1.7.0" />
     <PackageReference Include="NLog" Version="5.2.8" />
-    <PackageReference Include="NLog.Config" Version="4.7.15" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Update="chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
