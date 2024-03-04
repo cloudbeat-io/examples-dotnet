@@ -19,6 +19,8 @@ namespace CbExamples.NUnit.Pages.SauceDemo
 
         private IWebElement PasswordField => WebElementFinder.GetElement(driver, By.Id("password"));
 
+        private IWebElement UsernameFieldInvalid => WebElementFinder.GetElement(driver, By.Id("user-nameINVALID"));
+
         #endregion
 
         public LoginPage(IWebDriver driver, string baseUrl = null) : base(driver) 
@@ -49,6 +51,16 @@ namespace CbExamples.NUnit.Pages.SauceDemo
 			usernameFld.Click();
 			usernameFld.SendKeys(username);
 		}
+
+        [CbStep("Type invalid \"{username}\" in \"Username\" field")]
+        public void EnterUsernameInvalid(string username)
+        {
+            var usernameFld = UsernameField;
+            if (usernameFld == null)
+                Assert.Fail("Username field not found");
+            usernameFld.Click();
+            usernameFld.SendKeys(username);
+        }
 
         [CbStep("Type \"{password}\" in \"Password\" field")]
         public void EnterPassword(string password)
