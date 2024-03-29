@@ -28,7 +28,7 @@ namespace CbExamples.NUnit.Playwright.Tests
             await Step2();
         }
 
-        [CbStep("step number 1")]
+        [CbStep("step child 1")]
         private async Task Step1()
         {
             await _page.GotoAsync("https://playwright.dev");
@@ -46,7 +46,7 @@ namespace CbExamples.NUnit.Playwright.Tests
             await getStarted.ClickAsync();
         }
 
-        [CbStep("step number 1")]
+        [CbStep("step child 2")]
         private async Task Step2()
         {
             // Expects the URL to contain intro.
