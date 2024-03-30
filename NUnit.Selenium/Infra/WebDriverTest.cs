@@ -7,6 +7,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.Events;
 using OpenQA.Selenium.Support.Extensions;
+using WebDriverManager.DriverConfigs.Impl;
 
 namespace CbExamples.NUnit.Infra
 {
@@ -19,24 +20,24 @@ namespace CbExamples.NUnit.Infra
         [SetUp]
         public void SetUpWebDriver()
         {
-            //if (CbNUnit.Current.Config.HasMandatory())
+            if (CbNUnit.Current.Config.HasMandatory())
                 SetupRemoteChromeDriver();
-            //else
-              //  SetupLocalChromeDriver();
+            else
+                SetupLocalChromeDriver();
         }
 
         private void SetupLocalChromeDriver()
         {
-            ChromeOptions options = new ChromeOptions();
-            _driver = new ChromeDriver(options);
+            new WebDriverManager.DriverManager().SetUpDriver(new ChromeConfig());
+            _driver = new ChromeDriver();
             Driver = new EventFiringWebDriver(_driver);
             CbNUnit.WrapWebDriver(Driver);
         }
 
         private void SetupRemoteChromeDriver()
         {
-            string hubUrl = "http://ec2-3-78-227-222.eu-central-1.compute.amazonaws.com:4444/wd/hub";
-            // string hubUrl = "http://localhost:4444/wd/hub";
+            // string hubUrl = "http://ec2-3-78-227-222.eu-central-1.compute.amazonaws.com:4444/wd/hub";
+            string localHubUrl = "http://localhost:4444/wd/hub";
             ChromeOptions options = new ChromeOptions();
             string videoFileName = TestContext.CurrentContext.Test.ID + ".mp4";
             Dictionary<string, object> selenoidOpts = new Dictionary<string, object>
@@ -46,9 +47,7 @@ namespace CbExamples.NUnit.Infra
                 { "videoName", videoFileName }
             };
             options.AddAdditionalOption("selenoid:options", selenoidOpts);
-            //options.AddAdditionalOption("enableVideo", true);
-            //options.AddAdditionalOption("videoName", TestContext.CurrentContext.Test.ID + ".mp4");
-            _driver = new RemoteWebDriver(new Uri(hubUrl), options.ToCapabilities());
+            _driver = new RemoteWebDriver(new Uri(localHubUrl), options.ToCapabilities());
             Driver = new EventFiringWebDriver(_driver);
             CbNUnit.WrapWebDriver(Driver);
         }

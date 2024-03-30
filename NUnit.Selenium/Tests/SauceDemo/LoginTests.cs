@@ -19,11 +19,11 @@ namespace CbExamples.NUnit.Tests.SauceDemo
 		{
             var loginPage = new LoginPage(Driver);
             loginPage.Open();
-            /*loginPage.AssertPageOpen();
+            loginPage.AssertPageOpen();
             loginPage.EnterUsername("standard_user");
             loginPage.EnterPassword("secret_sauce");
             loginPage.PressLoginButton();
-            loginPage.AssertLoginSuccess();*/
+            loginPage.AssertLoginSuccess();
         }
 
         [Test(Description = "Locked out user login behaviour")]
