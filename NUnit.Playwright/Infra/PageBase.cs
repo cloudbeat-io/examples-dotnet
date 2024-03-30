@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Playwright;
 using NUnit.Framework;
+using CloudBeat.Kit.Playwright;
+using CloudBeat.Kit.NUnit;
 
 namespace CbExamples.NUnitPlaywright.Infra
 {
@@ -17,7 +19,11 @@ namespace CbExamples.NUnitPlaywright.Infra
             playwright = await Playwright.CreateAsync();
             browser = await playwright.Chromium.LaunchAsync();
             var page = await browser.NewPageAsync();
-            Page = page;
+            // Wrap page with CloudBeat wrapper, if the test is running on CB agent
+            if (CbNUnit.Current.IsConfigured && CbNUnit.Current.Reporter != null)
+                Page = new CbPageWrapper(page, CbNUnit.Current.Reporter);
+            else
+                Page = page;
         }
 
         [TearDown]
