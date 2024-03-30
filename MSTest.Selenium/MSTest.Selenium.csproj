@@ -13,6 +13,7 @@
     <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
     <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
     <PackageReference Include="coverlet.collector" Version="3.1.2" />
+    <PackageReference Include="CloudBeat.Kit.MSTest" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,10 +31,6 @@
     <Folder Include="Infra\" />
     <Folder Include="Pages\" />
     <Folder Include="Tests\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.Common\CloudBeat.Kit.Common.csproj" />
-    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.MSTest\CloudBeat.Kit.MSTest.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="chromedriver.exe">

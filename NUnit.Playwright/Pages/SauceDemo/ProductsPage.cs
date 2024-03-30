@@ -1,69 +1,71 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using CbExamples.NUnit.Infra;
+using System.Threading.Tasks;
+using CbExamples.NUnitPlaywright.Infra;
+using Microsoft.Playwright;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace CbExamples.MSTest.Pages.SauceDemo
+namespace CbExamples.NUnitPlaywright.Pages.SauceDemo
 {
 	public class ProductsPage : PageObjectBase
     {
-        public ProductsPage(IWebDriver driver) : base(driver)
+        public ProductsPage(IPage page) : base(page)
         {
         }
 
         #region Page Elements
 
-        private ReadOnlyCollection<IWebElement> AddToCartButtonList => WebElementFinder.GetElements(driver, By.XPath("//button[text()='Add to cart']"));
+        private ILocator AddToCartButtonList => page.Locator("//button[text()='Add to cart']");
 
-        private ReadOnlyCollection<IWebElement> RemoveButtonList => WebElementFinder.GetElements(driver, By.XPath("//button[text()='Remove']"));
+        private ILocator RemoveButtonList => page.Locator("//button[text()='Remove']");
 
-        private ReadOnlyCollection<IWebElement> PriceBarList => WebElementFinder.GetElements(driver, By.ClassName("pricebar"));
+        private ILocator PriceBarList => page.Locator("pricebar");
 
         #endregion
 
-        public void AssertProductsCount(int expectedProductsCount)
+        public async Task AssertProductsCount(int expectedProductsCount)
         {
             if (AddToCartButtonList == null)
                 Assert.Fail("No \"Add to cart\" buttons are found");
             Assert.That(
-                AddToCartButtonList.Count, Is.EqualTo(expectedProductsCount),
+                await AddToCartButtonList.CountAsync(), Is.EqualTo(expectedProductsCount),
                 "Assert amount of products");
         }
 
-        public void AssertPriceBarButtonText(int priceBarIndex, string expectedText)
+        public async Task AssertPriceBarButtonText(int priceBarIndex, string expectedText)
         {
             var priceBarList = PriceBarList;
             if (priceBarList == null)
                 Assert.Fail("No price bar elements are found");
-            if (priceBarList.Count - 1 < priceBarIndex)
+            if (await priceBarList.CountAsync() - 1 < priceBarIndex)
                 Assert.Fail("There are less price bar elements than expected");
-            var selectedPriceBar = priceBarList[priceBarIndex];
-            var button = selectedPriceBar.FindElement(By.TagName("button"));
+            var selectedPriceBar = priceBarList.Nth(priceBarIndex);
+            var button = selectedPriceBar.Locator("button");
             if (button == null)
                 Assert.Fail("No button inside price bar element is found");
             Assert.That(
-                expectedText, Is.EqualTo(button.Text));
+                expectedText, Is.EqualTo(await button.InnerTextAsync()));
         }
 
-        public void ClickAddToCartButton(int buttonIndex)
+        public async Task ClickAddToCartButton(int buttonIndex)
         {
             var addToCartButtonList = AddToCartButtonList;
             if (addToCartButtonList == null)
                 Assert.Fail("No \"Add to cart\" buttons are found");
-            if (addToCartButtonList.Count - 1 < buttonIndex)
+            if (await addToCartButtonList.CountAsync() - 1 < buttonIndex)
                 Assert.Fail("There are less \"Add to cart\" buttons than expected");
-            addToCartButtonList[buttonIndex].Click();
+            await addToCartButtonList.Nth(buttonIndex).ClickAsync();
         }
 
-        public void ClickRemoveButton(int buttonIndex)
+        public async Task ClickRemoveButton(int buttonIndex)
         {
             var removeButtonList = RemoveButtonList;
             if (removeButtonList == null)
                 Assert.Fail("No \"Remove\" buttons are found");
-            if (removeButtonList.Count - 1 < buttonIndex)
+            if (await removeButtonList.CountAsync() - 1 < buttonIndex)
                 Assert.Fail("There are less \"Remove\" buttons than expected");
-            removeButtonList[buttonIndex].Click();
+            await removeButtonList.Nth(buttonIndex).ClickAsync();
         }
     }
 }

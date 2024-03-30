@@ -21,6 +21,7 @@
 <PrivateAssets>all</PrivateAssets>
 </PackageReference>
     <PackageReference Include="RestSharp" Version="109.0.1" />
+    <PackageReference Include="CloudBeat.Kit.NUnit" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,9 +31,5 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infra\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.Common\CloudBeat.Kit.Common.csproj" />
-    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.NUnit\CloudBeat.Kit.NUnit.csproj" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 ﻿using System;
 using CbExamples.NUnit.Infra;
+using CloudBeat.Kit.NUnit;
 using CloudBeat.Kit.NUnit.Attributes;
 using NUnit.Framework;
 using OpenQA.Selenium;

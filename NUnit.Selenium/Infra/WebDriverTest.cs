@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using CloudBeat.Kit.NUnit;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -34,9 +35,20 @@ namespace CbExamples.NUnit.Infra
 
         private void SetupRemoteChromeDriver()
         {
+            string hubUrl = "http://ec2-3-78-227-222.eu-central-1.compute.amazonaws.com:4444/wd/hub";
+            // string hubUrl = "http://localhost:4444/wd/hub";
             ChromeOptions options = new ChromeOptions();
-
-            _driver = new RemoteWebDriver(new Uri("http://localhost:4444/wd/hub"), options.ToCapabilities());
+            string videoFileName = TestContext.CurrentContext.Test.ID + ".mp4";
+            Dictionary<string, object> selenoidOpts = new Dictionary<string, object>
+            {
+                { "enableVideo", true },
+                { "enableVNC", true },
+                { "videoName", videoFileName }
+            };
+            options.AddAdditionalOption("selenoid:options", selenoidOpts);
+            //options.AddAdditionalOption("enableVideo", true);
+            //options.AddAdditionalOption("videoName", TestContext.CurrentContext.Test.ID + ".mp4");
+            _driver = new RemoteWebDriver(new Uri(hubUrl), options.ToCapabilities());
             Driver = new EventFiringWebDriver(_driver);
             CbNUnit.WrapWebDriver(Driver);
         }
@@ -46,6 +58,7 @@ namespace CbExamples.NUnit.Infra
         {
             if (_driver != null)
             {
+                // take a screenshot if error occurs
                 if (TestContext.CurrentContext.Result.FailCount > 0)
                 {
                     try
@@ -61,6 +74,11 @@ namespace CbExamples.NUnit.Infra
                     _driver.Quit();
                 }
                 catch { }
+                // retrieve video from Selenoid if applicable
+                string videoFileName = TestContext.CurrentContext.Test.ID + ".mp4";
+                CbNUnit.AddScreenRecordingFromUrl(
+                    $"http://ec2-3-78-227-222.eu-central-1.compute.amazonaws.com:4444/video/{videoFileName}");
+
                 _driver = null;
                 Driver = null;
             }

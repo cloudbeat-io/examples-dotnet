@@ -2,7 +2,7 @@
 using CloudBeat.Kit.NUnit.Attributes;
 using NUnit.Framework;
 
-namespace CbExamples.NUnit.Infra
+namespace CbExamples.NUnitPlaywright.Infra
 {
     [CbNUnitTest]
     [TestFixture]

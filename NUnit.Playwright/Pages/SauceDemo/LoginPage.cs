@@ -1,10 +1,12 @@
 ﻿using System;
-using CbExamples.NUnit.Infra;
+using System.Threading.Tasks;
+using CbExamples.NUnitPlaywright.Infra;
 using CloudBeat.Kit.NUnit.Attributes;
+using Microsoft.Playwright;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace CbExamples.NUnit.Pages.SauceDemo
+namespace CbExamples.NUnitPlaywright.Pages.SauceDemo
 {
 	public class LoginPage : PageObjectBase
 	{
@@ -13,25 +15,25 @@ namespace CbExamples.NUnit.Pages.SauceDemo
 
 		#region Page Elements
 
-		private IWebElement LoginBtn => WebElementFinder.GetElement(driver, By.Id("login-button"));
+		private ILocator LoginBtn => page.Locator("#login-button");
 
-        private IWebElement UsernameField => WebElementFinder.GetElement(driver, By.Id("user-name"));
+        private ILocator UsernameField => page.Locator("#user-name");
 
-        private IWebElement PasswordField => WebElementFinder.GetElement(driver, By.Id("password"));
+        private ILocator PasswordField => page.Locator("#password");
 
-        private IWebElement UsernameFieldInvalid => WebElementFinder.GetElement(driver, By.Id("user-nameINVALID"));
+        private ILocator UsernameFieldInvalid => page.Locator("#user-nameINVALID");
 
         #endregion
 
-        public LoginPage(IWebDriver driver, string baseUrl = null) : base(driver) 
+        public LoginPage(IPage page, string baseUrl = null) : base(page) 
 		{
 			this.baseUrl = baseUrl;
 		}
 
 		[CbStep("Open \"Login\" page")]
-		public void Open()
+		public async Task Open()
 		{
-			driver.Navigate().GoToUrl(baseUrl ?? DEFAULT_BASE_URL);
+            await page.GotoAsync(baseUrl ?? DEFAULT_BASE_URL);
 		}
 
         [CbStep("Assert \"Login\" page opened successfully")]
@@ -43,42 +45,42 @@ namespace CbExamples.NUnit.Pages.SauceDemo
 		}
 
         [CbStep("Type \"{username}\" in \"Username\" field")]
-        public void EnterUsername(string username)
+        public async Task EnterUsername(string username)
 		{
 			var usernameFld = UsernameField;
 			if (usernameFld == null)
 				Assert.Fail("Username field not found");
-			usernameFld.Click();
-			usernameFld.SendKeys(username);
+			await usernameFld.ClickAsync();
+			await usernameFld.FillAsync(username);
 		}
 
         [CbStep("Type invalid \"{username}\" in \"Username\" field")]
-        public void EnterUsernameInvalid(string username)
+        public async Task EnterUsernameInvalid(string username)
         {
             var usernameFld = UsernameField;
             if (usernameFld == null)
                 Assert.Fail("Username field not found");
-            usernameFld.Click();
-            usernameFld.SendKeys(username);
+            await usernameFld.ClickAsync();
+            await usernameFld.FillAsync(username);
         }
 
         [CbStep("Type \"{password}\" in \"Password\" field")]
-        public void EnterPassword(string password)
+        public async Task EnterPassword(string password)
         {
             var passwordFld = PasswordField;
             if (passwordFld == null)
                 Assert.Fail("Password field not found");
-            passwordFld.Click();
-            passwordFld.SendKeys(password);
+            await passwordFld.ClickAsync();
+            await passwordFld.FillAsync(password);
         }
 
         [CbStep("Click on \"Login\" button")]
-        public void PressLoginButton()
+        public async Task PressLoginButton()
 		{
 			var loginBtn = LoginBtn;
             if (loginBtn == null)
                 Assert.Fail("Login button not found");
-			loginBtn.Click();
+			await loginBtn.ClickAsync();
         }
 
         [CbStep("Assert successful login")]

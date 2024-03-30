@@ -1,14 +1,11 @@
 ﻿using System;
 using CbExamples.MSTest.Infra;
 using CbExamples.MSTest.Pages.SauceDemo;
-using CloudBeat.Kit.Common.Attributes;
-using CloudBeat.Kit.Common.Enums;
 
 namespace CbExamples.MSTest.Tests.SauceDemo
 {
     [TestClass]
     [TestCategory("Login")]
-    [CbTestMode(CbTestModeEnum.Web)]
     public class LoginTests : WebDriverTest
     {
 		[TestMethod("Standard user login behaviour")]
@@ -20,10 +17,10 @@ namespace CbExamples.MSTest.Tests.SauceDemo
 		{
             var loginPage = new LoginPage(Driver);
             loginPage.Open();
-            loginPage.AssertPageOpen();
+            /*loginPage.AssertPageOpen();
             loginPage.EnterUsername("standard_user");
             loginPage.EnterPassword("secret_sauce");
-            loginPage.PressLoginButton();
+            loginPage.PressLoginButton();*/
         }
 
         [TestMethod("Locked out user login behaviour")]

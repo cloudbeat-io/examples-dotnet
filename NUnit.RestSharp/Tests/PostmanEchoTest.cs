@@ -3,6 +3,7 @@ using RestSharp;
 using System;
 using FluentAssertions;
 using NUnit.Framework;
+using CloudBeat.Kit.NUnit;
 
 namespace CbExamples.NUnit.RestSharp.Tests
 {
@@ -11,15 +12,43 @@ namespace CbExamples.NUnit.RestSharp.Tests
 		[Test]
 		public void RequestMethodsTest()
 		{
-			var request = new RestRequest("https://postman-echo.com/get", Method.Get);
-			var response = client.Execute(request);
-			response.StatusCode.Should().Be(System.Net.HttpStatusCode.NoContent);
-			
-			/*Assert.Multiple(() =>
-			{
-				Assert.That((int)response.StatusCode, Is.EqualTo(201));
-				Assert.That(response.StatusDescription, Is.EqualTo("Not found"));
-			});*/
-		}
+            // GET Request
+            CbNUnit.Step("GET Request", () =>
+            {
+                var request = new RestRequest("https://postman-echo.com/get", Method.Get);
+                var response = client.Execute(request);
+                Assert.Multiple(() =>
+                {
+                    response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
+                    response.Content.Should().Contain("args");
+                });
+            });
+            // POST Raw Text
+            CbNUnit.Step("POST Raw Text", () =>
+            {
+                var request = new RestRequest("https://postman-echo.com/post", Method.Post);
+                request.RequestFormat = DataFormat.Json;
+                request.AddBody(new { test = "value" });
+                var response = client.Execute(request);
+                Assert.Multiple(() =>
+                {
+                    response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
+                    response.Content.Should().Contain("data", "This is expected to be sent back as part of response body.");
+                });
+            });
+            // POST Form Data
+            CbNUnit.Step("POST Form Data", () =>
+            {
+                var request = new RestRequest("https://postman-echo.com/post", Method.Post);
+                request.AddParameter("foo1", "bar1");
+                request.AddParameter("foo2", "bar2");
+                var response = client.Execute(request);
+                Assert.Multiple(() =>
+                {
+                    response.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
+                    response.Content.Should().Contain("form");
+                });
+            });
+        }
 	}
 }

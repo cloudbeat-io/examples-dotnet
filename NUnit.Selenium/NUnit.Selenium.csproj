@@ -22,6 +22,7 @@
     <PackageReference Include="RestSharp" Version="109.0.1" />
     <PackageReference Include="DnsClient" Version="1.7.0" />
     <PackageReference Include="NLog" Version="5.2.8" />
+    <PackageReference Include="CloudBeat.Kit.NUnit" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,10 +42,6 @@
     <Folder Include="Pages\" />
     <Folder Include="Pages\SauceDemo\" />
     <Folder Include="Tests\SauceDemo\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.Common\CloudBeat.Kit.Common.csproj" />
-    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.NUnit\CloudBeat.Kit.NUnit.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="chromedriver">
