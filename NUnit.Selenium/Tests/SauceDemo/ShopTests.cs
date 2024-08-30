@@ -1,5 +1,4 @@
-﻿using System;
-using CloudBeat.Kit.Common.Attributes;
+﻿using CloudBeat.Kit.Common.Attributes;
 using CloudBeat.Kit.Common.Enums;
 using CbExamples.NUnit.Infra;
 using NUnit.Framework;

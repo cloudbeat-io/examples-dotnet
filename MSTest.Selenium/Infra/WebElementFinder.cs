@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace CbExamples.MSTest.Infra
 {
-	public static class WebElementFinder
+    public static class WebElementFinder
 	{
         public static IWebElement GetElement(IWebDriver driver, By elementLocator, int timeOutInSecs = 30, bool throwOnTimeout = false)
         {

@@ -1,5 +1,4 @@
-﻿using System;
-using CbExamples.NUnit.Infra;
+﻿using CbExamples.NUnit.Infra;
 using CbExamples.NUnit.Pages.SauceDemo;
 using CloudBeat.Kit.Common.Attributes;
 using CloudBeat.Kit.Common.Enums;
@@ -54,10 +53,10 @@ namespace CbExamples.NUnit.Tests.SauceDemo
             loginPage.AssertLoginErrorMessage("Epic sadface: Username and password do not match any user in this service");
         }
 
-        [Test]
+        [TestCase("bla", Description = "this method test case", Category = "ccccc")]
         [Ignore("Must be ignored")]
         [Category("Ignore")]
-        public void IgnoreMe()
+        public void IgnoreMe(string vvcv)
         {
 
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using CloudBeat.Kit.MSTest;
+﻿using CloudBeat.Kit.MSTest;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.Events;

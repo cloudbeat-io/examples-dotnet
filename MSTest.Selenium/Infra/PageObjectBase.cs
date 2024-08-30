@@ -1,9 +1,8 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace CbExamples.MSTest.Infra
 {
-	public class PageObjectBase
+    public class PageObjectBase
     {
 		protected readonly IWebDriver driver;
 

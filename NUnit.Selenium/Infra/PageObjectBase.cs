@@ -1,9 +1,8 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace CbExamples.NUnit.Infra
 {
-	public class PageObjectBase
+    public class PageObjectBase
     {
         protected static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
         protected readonly IWebDriver driver;

@@ -1,5 +1,4 @@
-﻿using System;
-using CloudBeat.Kit.Common.Wrappers;
+﻿using CloudBeat.Kit.Common.Wrappers;
 using CloudBeat.Kit.NUnit;
 using CloudBeat.Kit.NUnit.Attributes;
 using NUnit.Framework;

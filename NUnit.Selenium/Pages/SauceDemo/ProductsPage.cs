@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using CbExamples.NUnit.Infra;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace CbExamples.MSTest.Pages.SauceDemo
 {
-	public class ProductsPage : PageObjectBase
+    public class ProductsPage : PageObjectBase
     {
         public ProductsPage(IWebDriver driver) : base(driver)
         {

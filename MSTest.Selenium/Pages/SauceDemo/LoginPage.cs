@@ -1,11 +1,10 @@
-﻿using System;
-using CbExamples.MSTest.Infra;
+﻿using CbExamples.MSTest.Infra;
 using CloudBeat.Kit.MSTest.Attributes;
 using OpenQA.Selenium;
 
 namespace CbExamples.MSTest.Pages.SauceDemo
 {
-	public class LoginPage : PageObjectBase
+    public class LoginPage : PageObjectBase
 	{
 		private const string DEFAULT_BASE_URL = "https://www.saucedemo.com";
 		private readonly string baseUrl;
@@ -30,7 +29,7 @@ namespace CbExamples.MSTest.Pages.SauceDemo
 		[CbStep("Open \"Login\" page")]
 		public void Open()
 		{
-			driver.Navigate().GoToUrl(baseUrl ?? DEFAULT_BASE_URL);
+            driver.Navigate().GoToUrl(baseUrl ?? DEFAULT_BASE_URL);
 		}
 
         [CbStep("Assert \"Login\" page opened successfully")]

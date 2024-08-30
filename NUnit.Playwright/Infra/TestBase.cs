@@ -1,5 +1,4 @@
-﻿using System;
-using CloudBeat.Kit.NUnit.Attributes;
+﻿using CloudBeat.Kit.NUnit.Attributes;
 using NUnit.Framework;
 
 namespace CbExamples.NUnitPlaywright.Infra

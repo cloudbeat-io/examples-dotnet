@@ -1,5 +1,4 @@
-﻿using System;
-using CbExamples.MSTest.Infra;
+﻿using CbExamples.MSTest.Infra;
 using CbExamples.MSTest.Pages.SauceDemo;
 
 namespace CbExamples.MSTest.Tests.SauceDemo

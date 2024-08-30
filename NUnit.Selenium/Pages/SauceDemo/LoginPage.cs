@@ -1,13 +1,11 @@
-﻿using System;
-using CbExamples.NUnit.Infra;
-using CloudBeat.Kit.NUnit;
+﻿using CbExamples.NUnit.Infra;
 using CloudBeat.Kit.NUnit.Attributes;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace CbExamples.NUnit.Pages.SauceDemo
 {
-	public class LoginPage : PageObjectBase
+    public class LoginPage : PageObjectBase
 	{
 		private const string DEFAULT_BASE_URL = "https://www.saucedemo.com";
 		private readonly string baseUrl;

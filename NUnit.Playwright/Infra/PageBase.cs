@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Playwright;
 using NUnit.Framework;
 using CloudBeat.Kit.Playwright;
@@ -7,7 +6,7 @@ using CloudBeat.Kit.NUnit;
 
 namespace CbExamples.NUnitPlaywright.Infra
 {
-	public class PageBase : TestBase
+    public class PageBase : TestBase
     {
         IPlaywright playwright;
         IBrowser browser;

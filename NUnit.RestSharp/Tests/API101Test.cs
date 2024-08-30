@@ -1,11 +1,10 @@
-﻿using System;
-using CbExamples.NUnit.RestSharp.Infra;
+﻿using CbExamples.NUnit.RestSharp.Infra;
 using NUnit.Framework;
 using RestSharp;
 
 namespace CbExamples.NUnit.RestSharp.Tests
 {
-	public class API101Test : TestBase
+    public class API101Test : TestBase
 	{
         [Test]
         public void AllCustomersTest()

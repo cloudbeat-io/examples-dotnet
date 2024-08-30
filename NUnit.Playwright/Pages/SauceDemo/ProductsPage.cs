@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CbExamples.NUnitPlaywright.Infra;
 using Microsoft.Playwright;
 using NUnit.Framework;
-using OpenQA.Selenium;
 
 namespace CbExamples.NUnitPlaywright.Pages.SauceDemo
 {
-	public class ProductsPage : PageObjectBase
+    public class ProductsPage : PageObjectBase
     {
         public ProductsPage(IPage page) : base(page)
         {

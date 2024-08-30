@@ -1,13 +1,12 @@
 ﻿using CbExamples.NUnit.RestSharp.Infra;
 using RestSharp;
-using System;
 using FluentAssertions;
 using NUnit.Framework;
 using CloudBeat.Kit.NUnit;
 
 namespace CbExamples.NUnit.RestSharp.Tests
 {
-	public class PostmanEchoTest : TestBase
+    public class PostmanEchoTest : TestBase
 	{
 		[Test]
 		public void RequestMethodsTest()

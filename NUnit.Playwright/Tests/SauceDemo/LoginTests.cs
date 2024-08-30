@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CbExamples.NUnitPlaywright.Infra;
 using CbExamples.NUnitPlaywright.Pages.SauceDemo;
 using CloudBeat.Kit.Common.Attributes;

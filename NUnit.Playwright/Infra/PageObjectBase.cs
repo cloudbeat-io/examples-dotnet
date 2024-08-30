@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.Playwright;
+﻿using Microsoft.Playwright;
 
 namespace CbExamples.NUnitPlaywright.Infra
 {
-	public class PageObjectBase
+    public class PageObjectBase
     {
         protected static readonly NLog.Logger Log = NLog.LogManager.GetCurrentClassLogger();
         protected readonly IPage page;
