@@ -1,5 +1,6 @@
 ﻿using CbExamples.MSTest.Infra;
 using CbExamples.MSTest.Pages.SauceDemo;
+using CloudBeat.Kit.MSTest;
 
 namespace CbExamples.MSTest.Tests.SauceDemo
 {
@@ -7,7 +8,7 @@ namespace CbExamples.MSTest.Tests.SauceDemo
     [TestCategory("Login")]
     public class LoginTests : WebDriverTest
     {
-		[TestMethod("Standard user login behaviour")]
+        [TestMethod("Standard user login behaviour")]
         [TestCategory("JIRA=ISO-124")]
         [TestCategory("User=Standard")]
         [TestCategory("Nightly")]
@@ -55,6 +56,27 @@ namespace CbExamples.MSTest.Tests.SauceDemo
         public void SkipMe()
         {
 
+        }
+
+        [TestMethod("Example of getting environment variables from CB")]
+        public void EnvExample()
+        {
+            if (CbMSTestContext.IsEnabled)
+            {
+                var ctx = CbMSTest.Current.MSTestContext;
+
+                const string PARAM_NAME = "TestParam";
+
+                if (ctx != null && ctx.Properties != null && ctx.Properties.Contains(PARAM_NAME))
+                {
+                    var param = ctx.Properties[PARAM_NAME] as string;
+                    Console.Out.WriteLine($"Environment variable TestParam={param}");
+                } 
+                else
+                {
+                    throw new Exception($"Environment variable TestParam is not defined");
+                }
+            }
         }
     }
 }
