@@ -63,6 +63,9 @@ namespace CbExamples.MSTest.Tests.SauceDemo
         {
             if (CbMSTestContext.IsEnabled)
             {
+                var envName = CbMSTest.GetEnvironmentName();
+                Console.Out.WriteLine($"Currently selected environment: {envName ?? "UNDEFINED"}");
+
                 var ctx = CbMSTest.Current.MSTestContext;
 
                 const string PARAM_NAME = "TestParam";
