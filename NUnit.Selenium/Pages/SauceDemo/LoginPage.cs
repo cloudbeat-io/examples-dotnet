@@ -75,7 +75,7 @@ namespace CbExamples.NUnit.Pages.SauceDemo
         {
             if (LoginBtn != null)
                 Assert.Fail("Login failed");
-            Log.Info("Logged in successfuly");
+            Log.Info("Logged in successfully");
         }
 		[CbStep("Assert login error message: {message}")]
 		public void AssertLoginErrorMessage(string message)

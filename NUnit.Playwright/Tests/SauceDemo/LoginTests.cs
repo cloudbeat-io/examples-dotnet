@@ -3,12 +3,13 @@ using CbExamples.NUnitPlaywright.Infra;
 using CbExamples.NUnitPlaywright.Pages.SauceDemo;
 using CloudBeat.Kit.Common.Attributes;
 using CloudBeat.Kit.Common.Enums;
+using CloudBeat.Kit.NUnit;
 using NUnit.Framework;
 
 namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
 {
     [Category("Login")]
-    [CbTestMode(CbTestModeEnum.Mobile)]
+    [CbTestMode(CbTestModeEnum.Web)]
     public class LoginTests : PageBase
     {
         [Test(Description = "Standard user login behaviour"), Order(1)]
@@ -60,6 +61,17 @@ namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
         public void IgnoreMe()
         {
 
+        }
+
+        [Test(Description = "Example of getting environment variables from CB")]
+        public void EnvExample()
+        {
+            // expects currently selected environment to have a variable named TestParam
+            if (CbNUnitContext.IsEnabled)
+            {
+                var param = CbNUnit.GetParameter("TestParam");
+                TestContext.Out.WriteLine($"Environment variable TestParam={param ?? "UNDEFINED"}");
+            }
         }
     }
 }
