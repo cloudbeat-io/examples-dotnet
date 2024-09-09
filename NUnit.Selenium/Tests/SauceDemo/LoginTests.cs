@@ -2,7 +2,6 @@
 using CbExamples.NUnit.Pages.SauceDemo;
 using CloudBeat.Kit.Common.Attributes;
 using CloudBeat.Kit.Common.Enums;
-using CloudBeat.Kit.NUnit;
 using NUnit.Framework;
 
 namespace CbExamples.NUnit.Tests.SauceDemo
@@ -54,23 +53,11 @@ namespace CbExamples.NUnit.Tests.SauceDemo
             loginPage.AssertLoginErrorMessage("Epic sadface: Username and password do not match any user in this service");
         }
 
-        [TestCase("bla", Description = "this method test case", Category = "ccccc")]
-        [Ignore("Must be ignored")]
+        [TestCase("foo", Description = "This test case must be ignored", Category = "example")]
+        [Ignore("This method must be ignored")]
         [Category("Ignore")]
-        public void IgnoreMe(string vvcv)
+        public void IgnoreMe(string param)
         {
-
-        }
-
-        [Test(Description = "Example of getting environment variables from CB")]
-        public void EnvExample()
-        {
-            // expects currently selected environment to have a variable named TestParam
-            if (CbNUnitContext.IsEnabled)
-            {
-                var param = CbNUnit.GetParameter("TestParam");
-                Log.Info($"Environment variable TestParam={param ?? "UNDEFINED"}");
-            }
         }
     }
 }

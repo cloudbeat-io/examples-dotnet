@@ -6,7 +6,6 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.Events;
-using OpenQA.Selenium.Support.Extensions;
 using WebDriverManager.DriverConfigs.Impl;
 
 namespace CbExamples.NUnit.Infra
@@ -57,26 +56,22 @@ namespace CbExamples.NUnit.Infra
         {
             if (_driver != null)
             {
-                // take a screenshot if error occurs
-                if (TestContext.CurrentContext.Result.FailCount > 0)
-                {
-                    try
-                    {
-                        string screenshot = _driver.TakeScreenshot().AsBase64EncodedString;
-                        CbNUnit.AddScreenshot(screenshot);
-                    }
-                    catch { }
-                }
+                CbNUnit.AddScreenshotOnError();
+
                 try
                 {
                     _driver.Close();
                     _driver.Quit();
                 }
-                catch { }
+                catch
+                {
+                }
+
                 // retrieve video from Selenoid if applicable
-                string videoFileName = TestContext.CurrentContext.Test.ID + ".mp4";
+                /*string videoFileName = TestContext.CurrentContext.Test.ID + ".mp4";
                 CbNUnit.AddScreenRecordingFromUrl(
                     $"http://ec2-3-78-227-222.eu-central-1.compute.amazonaws.com:4444/video/{videoFileName}");
+                */
 
                 _driver = null;
                 Driver = null;

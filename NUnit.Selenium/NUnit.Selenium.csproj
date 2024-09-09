@@ -29,8 +29,6 @@
     <None Remove="Pages\" />
     <None Remove="Pages\SauceDemo\" />
     <None Remove="Tests\SauceDemo\" />
-    <None Remove="chromedriver\" />
-    <None Remove="chromedriver" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tests\" />
@@ -40,9 +38,6 @@
     <Folder Include="Tests\SauceDemo\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="chromedriver">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Update="chromedriver.exe">
