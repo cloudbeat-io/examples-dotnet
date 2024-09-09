@@ -11,7 +11,6 @@ namespace CbExamples.NUnit.RestSharp.Infra
     public class TestBase
 	{
 		protected RestClient client;
-        protected RestRequest request;
 
 		public TestBase()
 		{
@@ -23,12 +22,10 @@ namespace CbExamples.NUnit.RestSharp.Infra
             
             var restClientOptions = new RestClientOptions
             {
-                //BaseUrl = _testSettings.BaseUrl,
                 RemoteCertificateValidationCallback = (sender, certificate, chain, errors) => true,
                 ConfigureMessageHandler = _ => handler
             };
             client = new RestClient(restClientOptions);
-            
         }
 	}
 }
