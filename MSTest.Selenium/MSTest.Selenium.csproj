@@ -17,20 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="chromedriver" />
     <None Remove="Infra\" />
     <None Remove="Pages\" />
     <None Remove="Tests\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="chromedriver">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Infra\" />
     <Folder Include="Pages\" />
-    <Folder Include="Tests\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="chromedriver.exe">

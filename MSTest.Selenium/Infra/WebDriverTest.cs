@@ -26,12 +26,17 @@ namespace CbExamples.MSTest.Infra
         {
             if (_driver != null)
             {
+                CbMSTest.AddScreenshotOnError();
+
                 try
                 {
                     _driver.Close();
                     _driver.Quit();
                 }
-                catch { }
+                catch
+                {
+                }
+
                 _driver = null;
                 Driver = null;
             }

@@ -1,6 +1,5 @@
 ﻿using CbExamples.MSTest.Infra;
 using CbExamples.MSTest.Pages.SauceDemo;
-using CloudBeat.Kit.MSTest;
 
 namespace CbExamples.MSTest.Tests.SauceDemo
 {
@@ -17,10 +16,10 @@ namespace CbExamples.MSTest.Tests.SauceDemo
 		{
             var loginPage = new LoginPage(Driver);
             loginPage.Open();
-            /*loginPage.AssertPageOpen();
+            loginPage.AssertPageOpen();
             loginPage.EnterUsername("standard_user");
             loginPage.EnterPassword("secret_sauce");
-            loginPage.PressLoginButton();*/
+            loginPage.PressLoginButton();
         }
 
         [TestMethod("Locked out user login behaviour")]
@@ -50,36 +49,12 @@ namespace CbExamples.MSTest.Tests.SauceDemo
             loginPage.PressLoginButton();
             loginPage.AssertLoginErrorMessage("Epic sadface: Username and password do not match any user in this service");
         }
+
         [TestMethod]
         [Ignore("This method must be ignored")]
         [TestCategory("Ignore")]
         public void SkipMe()
         {
-
-        }
-
-        [TestMethod("Example of getting environment variables from CB")]
-        public void EnvExample()
-        {
-            if (CbMSTestContext.IsEnabled)
-            {
-                var envName = CbMSTest.GetEnvironmentName();
-                Console.Out.WriteLine($"Currently selected environment: {envName ?? "UNDEFINED"}");
-
-                var ctx = CbMSTest.Current.MSTestContext;
-
-                const string PARAM_NAME = "TestParam";
-
-                if (ctx != null && ctx.Properties != null && ctx.Properties.Contains(PARAM_NAME))
-                {
-                    var param = ctx.Properties[PARAM_NAME] as string;
-                    Console.Out.WriteLine($"Environment variable TestParam={param}");
-                } 
-                else
-                {
-                    throw new Exception($"Environment variable TestParam is not defined");
-                }
-            }
         }
     }
 }

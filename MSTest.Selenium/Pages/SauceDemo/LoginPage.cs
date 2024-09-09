@@ -38,7 +38,7 @@ namespace CbExamples.MSTest.Pages.SauceDemo
 			var loginBtn = LoginBtn;
 			if (loginBtn == null)
 				Assert.Fail("Login page assertion failed - Login button not found");
-		}
+        }
 
         [CbStep("Type \"{username}\" in \"Username\" field")]
         public void EnterUsername(string username)
