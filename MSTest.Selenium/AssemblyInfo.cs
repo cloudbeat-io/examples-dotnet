@@ -1,0 +1,1 @@
+﻿[assembly: Parallelize(Workers = 3, Scope = ExecutionScope.ClassLevel)] // ExecutionScope.MethodLevel is currently not supported
