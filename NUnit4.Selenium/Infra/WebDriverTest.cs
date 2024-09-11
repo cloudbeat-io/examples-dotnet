@@ -19,10 +19,8 @@ namespace CbExamples.NUnit4.Infra
         [SetUp]
         public void SetUpWebDriver()
         {
-            if (CbNUnit.Current.Config.HasMandatory())
-                SetupRemoteChromeDriver();
-            else
-                SetupLocalChromeDriver();
+            //SetupRemoteChromeDriver();
+            SetupLocalChromeDriver();
         }
 
         private void SetupLocalChromeDriver()
@@ -35,7 +33,6 @@ namespace CbExamples.NUnit4.Infra
 
         private void SetupRemoteChromeDriver()
         {
-            // string hubUrl = "http://ec2-3-78-227-222.eu-central-1.compute.amazonaws.com:4444/wd/hub";
             string localHubUrl = "http://localhost:4444/wd/hub";
             ChromeOptions options = new ChromeOptions();
             string videoFileName = TestContext.CurrentContext.Test.ID + ".mp4";
