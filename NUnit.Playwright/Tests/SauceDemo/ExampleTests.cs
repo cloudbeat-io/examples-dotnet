@@ -1,22 +1,26 @@
-﻿using CbExamples.NUnit4.Infra;
-using CbExamples.NUnit4.Pages.SauceDemo;
+﻿using CbExamples.NUnitPlaywright.Infra;
+using CbExamples.NUnitPlaywright.Pages.SauceDemo;
 using CloudBeat.Kit.Common.Attributes;
 using CloudBeat.Kit.Common.Enums;
 using CloudBeat.Kit.Common.Models;
 using CloudBeat.Kit.NUnit;
+using CloudBeat.Kit.Playwright;
+using Microsoft.Playwright;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
-namespace CbExamples.NUnit4.Tests.SauceDemo
+namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
 {
     [CbTestMode(CbTestModeEnum.Web)]
-    public class ExampleTests : WebDriverTest
+    public class ExampleTests : PageBase
     {
         [Test(Description = "Example of Assert failure outside of a step")]
-        public void AssertOutsideOfStep()
+        public async Task AssertOutsideOfStep()
         {
-            var loginPage = new LoginPage(Driver);
-            loginPage.Open();
+            var loginPage = new LoginPage(Page);
+            await loginPage.Open();
             Assert.Fail("Assert which was executed outside of a step");
         }
 
@@ -31,12 +35,12 @@ namespace CbExamples.NUnit4.Tests.SauceDemo
                 var i = 1;
                 foreach (var row in testData)
                 {
-                    Log.Info($"Parameter row #{i++}: {string.Join(',', row)}");
+                    TestContext.Progress.WriteLine($"Parameter row #{i++}: {string.Join(',', row)}");
                 }
             }
             else
             {
-                Log.Info("No parameters were specified");
+                TestContext.Progress.WriteLine("No parameters were specified");
             }
 
             // set output data + attributes
@@ -50,10 +54,10 @@ namespace CbExamples.NUnit4.Tests.SauceDemo
             if (CbNUnit.IsRunningFromCB())
             {
                 var envName = CbNUnit.GetEnvironmentName();
-                Log.Info($"Currently selected environment: {envName ?? "UNDEFINED"}");
+                TestContext.Progress.WriteLine($"Currently selected environment: {envName ?? "UNDEFINED"}");
 
                 var envVal = CbNUnit.GetEnvironmentValue("TestParam");
-                Log.Info($"Environment variable TestParam: {envVal ?? "UNDEFINED"}");
+                TestContext.Progress.WriteLine($"Environment variable TestParam: {envVal ?? "UNDEFINED"}");
             }
         }
 
@@ -72,10 +76,10 @@ namespace CbExamples.NUnit4.Tests.SauceDemo
         }
 
         [Test(Description = "Example of marking test with warnings")]
-        public void WarningsExample()
+        public async Task WarningsExample()
         {
-            var loginPage = new LoginPage(Driver);
-            loginPage.Open();
+            var loginPage = new LoginPage(Page);
+            await loginPage.Open();
             loginPage.AssertPageOpen();
 
             CbNUnit.HasWarnings();
@@ -84,10 +88,10 @@ namespace CbExamples.NUnit4.Tests.SauceDemo
         [Test(Description = "Example of CbNUnit.Step")]
         public void StepExample()
         {
-            LoginPage loginPage = new LoginPage(Driver);
+            LoginPage loginPage = new LoginPage(Page);
 
-            CbNUnit.Step("step 1", () => {
-                loginPage.Open();
+            CbNUnit.Step("step 1", async () => {
+                await loginPage.Open();
             });
 
             CbNUnit.Step("step 2", () => {
@@ -100,6 +104,23 @@ namespace CbExamples.NUnit4.Tests.SauceDemo
                 });
             });
         }
+
+        [Test(Description = "Example of APIRequest")]
+        public async Task ApiExample()
+        {
+            var playwright = await Playwright.CreateAsync();
+            var pwRequestContext = await playwright.APIRequest.NewContextAsync(new APIRequestNewContextOptions()
+            {
+                BaseURL = "https://api.github.com",
+                ExtraHTTPHeaders = new List<KeyValuePair<string, string>>()
+                {
+                     new KeyValuePair<string, string>("Context-Type", "application/json"),
+                }
+            });
+
+            var cbRequestContext = new CbAPIRequestContextWrapper(pwRequestContext, CbNUnit.Current.Reporter);
+
+            var response = await cbRequestContext.GetAsync("/");
+        }
     }
 }
-

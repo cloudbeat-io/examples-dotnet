@@ -81,7 +81,7 @@ namespace CbExamples.NUnit.Tests.SauceDemo
             CbNUnit.HasWarnings();
         }
 
-        [Test(Description = "Example of CbMSTest.Step")]
+        [Test(Description = "Example of CbNUnit.Step")]
         public void StepExample()
         {
             LoginPage loginPage = new LoginPage(Driver);

@@ -1,10 +1,9 @@
-﻿using System.Threading.Tasks;
-using CbExamples.NUnitPlaywright.Infra;
+﻿using CbExamples.NUnitPlaywright.Infra;
 using CbExamples.NUnitPlaywright.Pages.SauceDemo;
 using CloudBeat.Kit.Common.Attributes;
 using CloudBeat.Kit.Common.Enums;
-using CloudBeat.Kit.NUnit;
 using NUnit.Framework;
+using System.Threading.Tasks;
 
 namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
 {
@@ -60,19 +59,6 @@ namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
         [Category("Ignore")]
         public void IgnoreMe()
         {
-
-        }
-
-        [Test(Description = "Example of getting environment variables from CB")]
-        public void EnvExample()
-        {
-            // expects currently selected environment to have a variable named TestParam
-            if (CbNUnitContext.IsEnabled)
-            {
-                var param = CbNUnit.GetParameter("TestParam");
-                TestContext.Out.WriteLine($"Environment variable TestParam={param ?? "UNDEFINED"}");
-            }
         }
     }
 }
-

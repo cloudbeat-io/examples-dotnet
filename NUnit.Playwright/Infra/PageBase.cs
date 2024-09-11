@@ -3,10 +3,13 @@ using Microsoft.Playwright;
 using NUnit.Framework;
 using CloudBeat.Kit.Playwright;
 using CloudBeat.Kit.NUnit;
+using CloudBeat.Kit.NUnit.Attributes;
 
 namespace CbExamples.NUnitPlaywright.Infra
 {
-    public class PageBase : TestBase
+    [CbNUnitTest]
+    [TestFixture]
+    public class PageBase
     {
         IPlaywright playwright;
         IBrowser browser;
@@ -17,9 +20,12 @@ namespace CbExamples.NUnitPlaywright.Infra
         {
             playwright = await Playwright.CreateAsync();
             browser = await playwright.Chromium.LaunchAsync();
-            var page = await browser.NewPageAsync();
+            var page = await browser.NewPageAsync(new BrowserNewPageOptions
+            {
+                RecordVideoDir = "videos/"
+            });
             // Wrap page with CloudBeat wrapper, if the test is running on CB agent
-            if (CbNUnit.Current.IsConfigured && CbNUnit.Current.Reporter != null)
+            if (CbNUnit.IsRunningFromCB())
                 Page = new CbPageWrapper(page, CbNUnit.Current.Reporter);
             else
                 Page = page;
@@ -31,6 +37,13 @@ namespace CbExamples.NUnitPlaywright.Infra
             if (Page != null)
             {
                 await Page.CloseAsync();
+
+                if (TestContext.CurrentContext.Result.FailCount > 0)
+                {
+                    var videoPath = await Page.Video.PathAsync();
+                    CbNUnit.AddScreenRecordingFromPath(videoPath);
+                }
+
                 Page = null;
             }
             if (browser != null)
