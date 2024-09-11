@@ -16,14 +16,6 @@ namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
     [CbTestMode(CbTestModeEnum.Web)]
     public class ExampleTests : PageBase
     {
-        [Test(Description = "Example of Assert failure outside of a step")]
-        public async Task AssertOutsideOfStep()
-        {
-            var loginPage = new LoginPage(Page);
-            await loginPage.Open();
-            Assert.Fail("Assert which was executed outside of a step");
-        }
-
         [Test(Description = "Example of adding test output data/attributes and getting input parameters")]
         public void OutputDataAndParamsExample()
         {
@@ -85,24 +77,24 @@ namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
             CbNUnit.HasWarnings();
         }
 
-        [Test(Description = "Example of CbNUnit.Step")]
-        public void StepExample()
+        [Test(Description = "Example of CbNUnit.StartStep")]
+        public async Task StepExample()
         {
-            LoginPage loginPage = new LoginPage(Page);
+            var loginPage = new LoginPage(Page);
 
-            CbNUnit.Step("step 1", async () => {
-                await loginPage.Open();
-            });
+            CbNUnit.StartStep("step 1");
+            await loginPage.Open();
+            CbNUnit.EndStep("step 1");
 
-            CbNUnit.Step("step 2", () => {
-                loginPage.AssertPageOpen();
-            });
+            CbNUnit.StartStep("step 2");
+            loginPage.AssertPageOpen();
+            CbNUnit.EndStep("step 2");
 
-            CbNUnit.Step("step 3", () => {
-                CbNUnit.Step("step nested inside step 3", () => {
-                    loginPage.AssertPageOpen();
-                });
-            });
+            CbNUnit.StartStep("step 3");
+            CbNUnit.StartStep("step nested inside step 3");
+            loginPage.AssertPageOpen();
+            CbNUnit.EndStep("step nested inside step 3");
+            CbNUnit.EndStep("step 3");
         }
 
         [Test(Description = "Example of APIRequest")]

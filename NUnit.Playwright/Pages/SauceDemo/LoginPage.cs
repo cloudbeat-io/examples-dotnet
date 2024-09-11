@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using CbExamples.NUnitPlaywright.Infra;
 using CloudBeat.Kit.NUnit.Attributes;
+using CloudBeat.Kit.Playwright;
 using Microsoft.Playwright;
 using NUnit.Framework;
 
@@ -82,10 +83,11 @@ namespace CbExamples.NUnitPlaywright.Pages.SauceDemo
         }
 
         [CbStep("Assert successful login")]
-        public void AssertLoginSuccess()
+        public async void AssertLoginSuccess()
         {
-            if (LoginBtn != null)
-                Assert.Fail("Login failed");
+            // For assertions CloudBeat.Kit.Playwright.CbAssertions should be used instead of Microsoft.Playwright.Assertions
+            // using Microsoft.Playwright.Assertions when running from CloudBeat will lead to exception
+            await CbAssertions.Expect(LoginBtn).ToBeHiddenAsync();
         }
 
         [CbStep("Assert login error message: {message}")]

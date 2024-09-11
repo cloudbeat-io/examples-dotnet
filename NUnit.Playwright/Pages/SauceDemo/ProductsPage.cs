@@ -17,7 +17,7 @@ namespace CbExamples.NUnitPlaywright.Pages.SauceDemo
 
         private ILocator RemoveButtonList => page.Locator("//button[text()='Remove']");
 
-        private ILocator PriceBarList => page.Locator("pricebar");
+        private ILocator PriceBarList => page.Locator(".pricebar");
 
         #endregion
 
