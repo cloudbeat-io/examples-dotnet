@@ -18,7 +18,6 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
     <PackageReference Include="NLog" Version="5.3.4" />
     <PackageReference Include="WebDriverManager" Version="2.17.4" />
-    <PackageReference Include="CloudBeat.Kit.NUnit4" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +33,9 @@
     <Folder Include="Infra\" />
     <Folder Include="Pages\" />
     <Folder Include="Pages\SauceDemo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.NUnit4\CloudBeat.Kit.NUnit4.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="NLog.config">

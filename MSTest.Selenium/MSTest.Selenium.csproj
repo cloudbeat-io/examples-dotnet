@@ -10,7 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CloudBeat.Kit.MSTest" Version="4.8.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.6.3" />
     <PackageReference Include="MSTest.TestFramework" Version="3.6.3" />
@@ -24,6 +23,9 @@
   <ItemGroup>
     <Folder Include="Infra\" />
     <Folder Include="Pages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.MSTest\CloudBeat.Kit.MSTest.csproj" />
   </ItemGroup>
   <ItemGroup>
     <None Update="chromedriver.exe">

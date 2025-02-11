@@ -17,8 +17,6 @@
     <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
     <PackageReference Include="Microsoft.Playwright" Version="1.41.2" />
-    <PackageReference Include="CloudBeat.Kit.NUnit" Version="4.8.1" />
-    <PackageReference Include="CloudBeat.Kit.Playwright" Version="4.8.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,5 +34,9 @@
     <Folder Include="Pages\" />
     <Folder Include="Pages\SauceDemo\" />
     <Folder Include="Tests\SauceDemo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.NUnit\CloudBeat.Kit.NUnit.csproj" />
+    <ProjectReference Include="..\..\cb-kit-dotnet\CloudBeat.Kit.Playwright\CloudBeat.Kit.Playwright.csproj" />
   </ItemGroup>
 </Project>
