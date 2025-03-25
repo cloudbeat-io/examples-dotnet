@@ -18,6 +18,8 @@ namespace CbExamples.NUnit.Pages.SauceDemo
 
         private IWebElement PasswordField => WebElementFinder.GetElement(driver, By.Id("password"));
 
+        private IWebElement ErrorMessage => WebElementFinder.GetElement(driver, By.XPath("//h3[@data-test='error']"));
+
         #endregion
 
         public LoginPage(IWebDriver driver, string baseUrl = null) : base(driver) 
@@ -77,12 +79,14 @@ namespace CbExamples.NUnit.Pages.SauceDemo
                 Assert.Fail("Login failed");
             Log.Info("Logged in successfully");
         }
+
 		[CbStep("Assert login error message: {message}")]
-		public void AssertLoginErrorMessage(string message)
+		public void AssertLoginErrorMessage(string expectedMessage)
         {
-            Log.Error("Assert failed");
-            Assert.Fail("Login message is incorrect");
-            //throw new NotImplementedException();
+            if (expectedMessage == null)
+                Assert.Fail("Error message element not found");
+            string actualMessage = ErrorMessage.Text;
+            Assert.AreEqual(expectedMessage, actualMessage);
         }
     }
 }

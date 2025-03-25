@@ -35,7 +35,7 @@ namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
             var loginPage = new LoginPage(Page);
             await loginPage.Open();
             loginPage.AssertPageOpen();
-            await loginPage.EnterUsername("standard_user");
+            await loginPage.EnterUsername("locked_out_user");
             await loginPage.EnterPassword("secret_sauce");
             await loginPage.PressLoginButton();
             loginPage.AssertLoginErrorMessage("Epic sadface: Sorry, this user has been locked out.");

@@ -34,7 +34,7 @@ namespace CbExamples.NUnit4.Tests.SauceDemo
             var loginPage = new LoginPage(Driver);
             loginPage.Open();
             loginPage.AssertPageOpen();
-            loginPage.EnterUsername("standard_user");
+            loginPage.EnterUsername("locked_out_user");
             loginPage.EnterPassword("secret_sauce");
             loginPage.PressLoginButton();
             loginPage.AssertLoginErrorMessage("Epic sadface: Sorry, this user has been locked out.");

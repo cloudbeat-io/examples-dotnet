@@ -22,6 +22,8 @@ namespace CbExamples.NUnitPlaywright.Pages.SauceDemo
 
         private ILocator UsernameFieldInvalid => page.Locator("#user-nameINVALID");
 
+        private ILocator ErrorMessage => page.Locator("//h3[@data-test='error']");
+
         #endregion
 
         public LoginPage(IPage page, string baseUrl = null) : base(page) 
@@ -91,9 +93,9 @@ namespace CbExamples.NUnitPlaywright.Pages.SauceDemo
         }
 
         [CbStep("Assert login error message: {message}")]
-        public void AssertLoginErrorMessage(string message)
+        public async void AssertLoginErrorMessage(string message)
         {
-            Assert.Fail("Login message is incorrect");
+            await CbAssertions.Expect(ErrorMessage).ToContainTextAsync(message);
         }
     }
 }
