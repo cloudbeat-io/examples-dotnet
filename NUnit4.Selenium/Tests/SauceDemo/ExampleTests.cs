@@ -100,6 +100,40 @@ namespace CbExamples.NUnit4.Tests.SauceDemo
                 });
             });
         }
+
+        [Test(Description = "Example of Retry")]
+        [Retry(2)]
+        public void RetryExample()
+        {
+            LoginPage loginPage = new LoginPage(Driver);
+
+            var retryCount = TestContext.CurrentContext.CurrentRepeatCount;
+
+            CbNUnit.Step($"step 1 (retry #{retryCount})", () => {
+                loginPage.Open();
+            });
+
+            CbNUnit.Step($"step 2 (retry #{retryCount})", () => {
+                Assert.Fail("This test has been failed on purpose");
+            });
+        }
+
+        [Test(Description = "Example of Repeat")]
+        [Repeat(3)]
+        public void RepeatExample()
+        {
+            LoginPage loginPage = new LoginPage(Driver);
+
+            var repeatCount = TestContext.CurrentContext.CurrentRepeatCount;
+
+            CbNUnit.Step($"open home page (repetition #{repeatCount})", () => {
+                loginPage.Open();
+            });
+
+            CbNUnit.Step($"assert home page (repetition #{repeatCount})", () => {
+                loginPage.AssertPageOpen();
+            });
+        }
     }
 }
 
