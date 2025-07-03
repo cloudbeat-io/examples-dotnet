@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0;</TargetFrameworks>
+    <TargetFrameworks>net8.0;</TargetFrameworks>
     <ImplicitUsings>false</ImplicitUsings>
     <Nullable>disable</Nullable>
     <SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
@@ -17,8 +17,8 @@
     <PackageReference Include="NUnit" Version="3.14.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.6.0" />
     <PackageReference Include="Microsoft.Playwright" Version="1.41.2" />
-    <PackageReference Include="CloudBeat.Kit.NUnit" Version="5.4.0" />
-    <PackageReference Include="CloudBeat.Kit.Playwright" Version="5.0.0" />
+    <PackageReference Include="CloudBeat.Kit.NUnit" Version="5.5.0" />
+    <PackageReference Include="CloudBeat.Kit.Playwright" Version="5.5.0" />
   </ItemGroup>
 
   <ItemGroup>
