@@ -85,7 +85,7 @@ namespace CbExamples.NUnitPlaywright.Pages.SauceDemo
         }
 
         [CbStep("Assert successful login")]
-        public async void AssertLoginSuccess()
+        public async Task AssertLoginSuccess()
         {
             // For assertions CloudBeat.Kit.Playwright.CbAssertions should be used instead of Microsoft.Playwright.Assertions
             // using Microsoft.Playwright.Assertions when running from CloudBeat will lead to exception
@@ -93,7 +93,7 @@ namespace CbExamples.NUnitPlaywright.Pages.SauceDemo
         }
 
         [CbStep("Assert login error message: {message}")]
-        public async void AssertLoginErrorMessage(string message)
+        public async Task AssertLoginErrorMessage(string message)
         {
             await CbAssertions.Expect(ErrorMessage).ToContainTextAsync(message);
         }

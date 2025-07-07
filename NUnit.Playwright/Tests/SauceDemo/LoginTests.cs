@@ -23,7 +23,7 @@ namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
             await loginPage.EnterUsername("standard_user");
             await loginPage.EnterPassword("secret_sauce");
             await loginPage.PressLoginButton();
-            loginPage.AssertLoginSuccess();
+            await loginPage.AssertLoginSuccess();
         }
 
         [Test(Description = "Locked out user login behaviour")]
@@ -38,7 +38,7 @@ namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
             await loginPage.EnterUsername("locked_out_user");
             await loginPage.EnterPassword("secret_sauce");
             await loginPage.PressLoginButton();
-            loginPage.AssertLoginErrorMessage("Epic sadface: Sorry, this user has been locked out.");
+            await loginPage.AssertLoginErrorMessage("Epic sadface: Sorry, this user has been locked out.");
         }
 
         [Test(Description = "Invalid user login behaviour")]
@@ -51,7 +51,7 @@ namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
             await loginPage.EnterUsername("invalid_user");
             await loginPage.EnterPassword("invalid_password");
             await loginPage.PressLoginButton();
-            loginPage.AssertLoginErrorMessage("Epic sadface: Username and password do not match any user in this service");
+            await loginPage.AssertLoginErrorMessage("Epic sadface: Username and password do not match any user in this service");
         }
 
         [Test]

@@ -23,7 +23,7 @@ namespace CbExamples.NUnitPlaywright.Tests.SauceDemo
             await loginPage.EnterUsername(username);
             await loginPage.EnterPassword(password);
             await loginPage.PressLoginButton();
-            loginPage.AssertLoginSuccess();
+            await loginPage.AssertLoginSuccess();
             var productsPage = new ProductsPage(Page);
             await productsPage.AssertProductsCount(6);
             await productsPage.ClickAddToCartButton(0);
