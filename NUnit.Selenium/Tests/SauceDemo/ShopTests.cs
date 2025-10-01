@@ -3,7 +3,6 @@ using CloudBeat.Kit.Common.Enums;
 using CbExamples.NUnit.Infra;
 using NUnit.Framework;
 using CbExamples.NUnit.Pages.SauceDemo;
-using CbExamples.MSTest.Pages.SauceDemo;
 
 namespace CbExamples.NUnit.Tests.SauceDemo
 {

@@ -3,7 +3,7 @@ using CbExamples.NUnit.Infra;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace CbExamples.MSTest.Pages.SauceDemo
+namespace CbExamples.NUnit.Pages.SauceDemo
 {
     public class ProductsPage : PageObjectBase
     {
