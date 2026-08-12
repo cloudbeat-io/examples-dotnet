@@ -1,12 +1,13 @@
 ﻿using CbExamples.MSTest.Pages.SauceDemo;
 using CbExamples.MSTest.Infra;
+using CloudBeat.Kit.MSTest.Attributes;
 
 namespace CbExamples.MSTest.Tests.SauceDemo
 {
     [TestClass]
     public class ShopTests : WebDriverTest
     {
-		[DataTestMethod]
+		[CbTestMethod]
         [Description("Test add/remove buttons")]
 		[DataRow("standard_user", "secret_sauce")]
         [DataRow("problem_user", "secret_sauce")]

@@ -2,13 +2,14 @@
 using CbExamples.MSTest.Pages.SauceDemo;
 using CloudBeat.Kit.Common.Models;
 using CloudBeat.Kit.MSTest;
+using CloudBeat.Kit.MSTest.Attributes;
 
 namespace CbExamples.MSTest.Tests.SauceDemo
 {
     [TestClass]
     public class ExampleTests : WebDriverTest
     {
-        [TestMethod("Example of Assert failure outside of a step")]
+        [CbTestMethod("Example of Assert failure outside of a step")]
         public void AssertOutsideOfStep()
         {
             var loginPage = new LoginPage(Driver);
@@ -16,7 +17,7 @@ namespace CbExamples.MSTest.Tests.SauceDemo
             Assert.Fail("Assert which was executed outside of a step");
         }
 
-        [TestMethod("Example of adding test output data/attributes and getting input parameters")]
+        [CbTestMethod("Example of adding test output data/attributes and getting input parameters")]
         public void OutputDataAndParamsExample()
         {
             // get input parameters passed from CloudBeat and print to console log
@@ -40,7 +41,7 @@ namespace CbExamples.MSTest.Tests.SauceDemo
             CbMSTest.AddTestAttribute("foo", "bar attribute");
         }
 
-        [TestMethod("Example of getting environment variables from CB")]
+        [CbTestMethod("Example of getting environment variables from CB")]
         public void EnvExample()
         {
             if (CbMSTest.IsRunningFromCB())
@@ -53,7 +54,7 @@ namespace CbExamples.MSTest.Tests.SauceDemo
             }
         }
 
-        [TestMethod("Example of setting failure reason")]
+        [CbTestMethod("Example of setting failure reason")]
         public void FailureReasonExample()
         {
             try
@@ -67,7 +68,7 @@ namespace CbExamples.MSTest.Tests.SauceDemo
             }
         }
 
-        [TestMethod("Example of marking test with warnings")]
+        [CbTestMethod("Example of marking test with warnings")]
         public void WarningsExample()
         {
             var loginPage = new LoginPage(Driver);
@@ -77,7 +78,7 @@ namespace CbExamples.MSTest.Tests.SauceDemo
             CbMSTest.HasWarnings();
         }
 
-        [TestMethod("Example of CbMSTest.Step")]
+        [CbTestMethod("Example of CbMSTest.Step")]
         public void StepExample()
         {
             LoginPage loginPage = new LoginPage(Driver);

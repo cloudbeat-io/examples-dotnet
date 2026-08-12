@@ -1,5 +1,6 @@
 ﻿using CbExamples.MSTest.Infra;
 using CbExamples.MSTest.Pages.SauceDemo;
+using CloudBeat.Kit.MSTest.Attributes;
 
 namespace CbExamples.MSTest.Tests.SauceDemo
 {
@@ -7,7 +8,7 @@ namespace CbExamples.MSTest.Tests.SauceDemo
     [TestCategory("Login")]
     public class LoginTests : WebDriverTest
     {
-        [TestMethod("Standard user login behaviour")]
+        [CbTestMethod("Standard user login behaviour")]
         [TestCategory("JIRA=ISO-124")]
         [TestCategory("User=Standard")]
         [TestCategory("Nightly")]
@@ -22,7 +23,7 @@ namespace CbExamples.MSTest.Tests.SauceDemo
             loginPage.PressLoginButton();
         }
 
-        [TestMethod("Locked out user login behaviour")]
+        [CbTestMethod("Locked out user login behaviour")]
         [TestCategory("Regression")]
         [TestCategory("Nightly")]
         [Priority(2)]
@@ -37,7 +38,7 @@ namespace CbExamples.MSTest.Tests.SauceDemo
             loginPage.AssertLoginErrorMessage("Epic sadface: Sorry, this user has been locked out.");
         }
 
-        [TestMethod("Invalid user login behaviour")]
+        [CbTestMethod("Invalid user login behaviour")]
         [Priority(3)]
         public void InvalidUserTest()
         {
